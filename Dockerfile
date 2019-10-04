@@ -20,8 +20,7 @@ RUN curl --silent --show-error https://getcomposer.org/installer | php -- --inst
 RUN sed -ri -e 's!/var/www/html!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/sites-available/*.conf
 RUN sed -ri -e 's!/var/www/!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/apache2.conf /etc/apache2/conf-available/*.conf
 
-RUN usermod -u 1000 www-data
-RUN groupmod -g 1000 www-data
+RUN useradd -u 1000 apache
 
 WORKDIR /var/www/html/
 EXPOSE 80 443
