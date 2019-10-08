@@ -8,11 +8,15 @@ services:
     volumes:
       - ./:/var/www/html
     links:
+      - db
       - testdb
+  db:
+    image: mariadb
+    environment:
+      MYSQL_ROOT_PASSWORD: example
+      MYSQL_DATABASE: laravel
   testdb:
     image: mariadb
     environment:
-      MYSQL_ROOT_PASSWORD: test
+      MYSQL_ROOT_PASSWORD: example
       MYSQL_DATABASE: test
-      MYSQL_USER: test
-      MYSQL_PASSWORD: test
