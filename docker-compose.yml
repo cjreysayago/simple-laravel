@@ -10,6 +10,8 @@ services:
     links:
       - db
       - testdb
+    environment:
+      APACHE_RUN_USER: apache # Start service with the given user
   db:
     image: mariadb
     environment:
