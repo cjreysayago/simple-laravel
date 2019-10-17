@@ -5,14 +5,18 @@ ENV APACHE_DOCUMENT_ROOT /var/www/html/public
 RUN apt-get update && apt-get install -y \
     zlib1g-dev \
     libzip-dev \
-    unzip
+    unzip \
+    libpng-dev \
+    libjpeg-dev \
+    libgd-dev
 # Nodejs
 RUN apt-get install curl software-properties-common -y
 RUN curl -sL https://deb.nodesource.com/setup_10.x | bash -
 RUN apt-get install nodejs -y
 
 # Extensions
-RUN docker-php-ext-install mbstring zip pdo pdo_mysql
+RUN docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/
+RUN docker-php-ext-install mbstring zip pdo pdo_mysql bcmath gd
 # Install composer
 RUN curl --silent --show-error https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
