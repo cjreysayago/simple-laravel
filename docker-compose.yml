@@ -2,9 +2,9 @@ version: '3.7'
 
 services:
   app:
-    image: cjreysayago/laravel-env
+    image: cjreysayago/simple-laravel
     ports:
-      - 8000:80
+      - 8080:80
     volumes:
       - ./:/var/www/html
     links:
@@ -14,6 +14,8 @@ services:
       APACHE_RUN_USER: apache # Start service with the given user
   db:
     image: mariadb
+    ports:
+      - 3306:3306
     environment:
       MYSQL_ROOT_PASSWORD: example
       MYSQL_DATABASE: laravel
