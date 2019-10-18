@@ -25,6 +25,8 @@ RUN sed -ri -e 's!/var/www/html!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/sites-av
 RUN sed -ri -e 's!/var/www/!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/apache2.conf /etc/apache2/conf-available/*.conf
 
 RUN useradd -u 1000 apache
+RUN mkdir /home/apache
+RUN chown -R apache:apache /home/apache
 
 # Enable mod_rewrite
 RUN a2enmod rewrite
