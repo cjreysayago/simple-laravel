@@ -3,6 +3,7 @@ ENV APACHE_DOCUMENT_ROOT /var/www/html/public
 
 # Dependencies
 RUN apt-get update && apt-get install -y \
+    libcurl4-gnutls-dev  \
     zlib1g-dev \
     libzip-dev \
     unzip \
@@ -16,7 +17,7 @@ RUN apt-get install nodejs -y
 
 # Extensions
 RUN docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/
-RUN docker-php-ext-install mbstring zip pdo pdo_mysql bcmath gd exif
+RUN docker-php-ext-install curl mbstring zip pdo pdo_mysql bcmath gd exif
 # Install composer
 RUN curl --silent --show-error https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
