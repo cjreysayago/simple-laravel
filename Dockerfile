@@ -12,7 +12,7 @@ RUN apt-get update && apt-get install -y \
     libgd-dev
 # Nodejs
 RUN apt-get install curl software-properties-common -y
-RUN curl -sL https://deb.nodesource.com/setup_10.x | bash -
+RUN curl -sL https://deb.nodesource.com/setup_12.x | bash -
 RUN apt-get install nodejs -y
 
 # Extensions
